@@ -49,7 +49,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    # Local apps
     "books.apps.BooksConfig",      # new
+    "apis.apps.ApisConfig",     # new apis app
+
+    # Third-party apps
+    "rest_framework", # new
     
 ]
 
