@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "whitenoise.runserver_nostatic", # new
     "django.contrib.staticfiles",
     
     # Local
@@ -43,11 +44,14 @@ INSTALLED_APPS = [
     
     # Third party
     "rest_framework",    # new
+    "corsheaders",    # new
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",   # new
+    "corsheaders.middleware.CorsMiddleware",      # new
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -132,3 +136,16 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.AllowAny",
     ],
 }
+
+
+CORS_ALLOWED_ORIGINS = (
+    "http://localhost:3000", 
+    "http://localhost:8000", 
+    )
+
+CSRF_TRUSTED_ORIGINS = ["localhost:3000"]
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"] # new
+STATIC_ROOT = BASE_DIR / "staticfiles" # new
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage" # new
