@@ -137,11 +137,36 @@ REST_FRAMEWORK = {
     ],
 }
 
-
-CORS_ALLOWED_ORIGINS = (
+# CORS configurations based on django-cors-headers
+CORS_ALLOWED_ORIGINS = [                # explictly set a whitelist of only allowed external origins to send requests of reading our site responses  
     "http://localhost:3000", 
     "http://localhost:8000", 
-    )
+]
+
+CORS_ALLOW_ALL_ORIGINS = False           # to do not allow CORS for all origins
+CORS_ALLOW_CREDENTIALS = True    # Allows cookies/auth headers  # True -  value to must specify an explicit, trusted list of origins (if this value is True >> we can not use wildcard (*) in in CORS_ALLOWED_ORIGINS)
+CORS_ALLOW_METHODS = [
+    "GET", 
+    "POST", 
+    "PUT", 
+    "DELETE"
+    ]   # specify CORS Allowed methods
+
+# RECOMMENDED: Add these additional security settings
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+# Optional: Preflight request cache time (in seconds)
+CORS_PREFLIGHT_MAX_AGE = 86400  # 24 hours
+################################################################
 
 CSRF_TRUSTED_ORIGINS = ["localhost:3000"]
 
