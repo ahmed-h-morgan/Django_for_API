@@ -149,7 +149,8 @@ CORS_ALLOW_METHODS = [
     "GET", 
     "POST", 
     "PUT", 
-    "DELETE"
+    "DELETE", 
+    "OPTIONS"
     ]   # specify CORS Allowed methods
 
 # RECOMMENDED: Add these additional security settings
