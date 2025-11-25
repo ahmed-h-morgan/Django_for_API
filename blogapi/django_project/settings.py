@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     "accounts.apps.AccountsConfig", # new
     "posts.apps.PostsConfig", # new
     
+    # 3rd-party apps
+    "rest_framework", # new
+    
 ]
 
 MIDDLEWARE = [
@@ -130,5 +133,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "accounts.CustomUser"            # new - use the new customized User model for authentication rather than the default User model
 
 
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+}
 
      
