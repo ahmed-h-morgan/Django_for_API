@@ -1,3 +1,4 @@
+# posts/models.py
 from django.db import models
 
 from django.conf import settings       # we import Django's settings to be able to refer to customized User stored in project/settings >> AUTH_USER_MODEL
@@ -13,4 +14,4 @@ class Post(models.Model):
     
     def __str__(self):
         return self.title
-    
+ 
