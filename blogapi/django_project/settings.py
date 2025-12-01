@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # 3rd-party apps
     "rest_framework", # new
     "corsheaders", # new
+    "rest_framework.authtoken", # new   - add authtoken app which generates the tokens on the server - It comes included with Django REST Framework but must be added to our INSTALLED_APPS setting
     
 ]
 
@@ -141,7 +142,7 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
-        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
     ],
 }
 
