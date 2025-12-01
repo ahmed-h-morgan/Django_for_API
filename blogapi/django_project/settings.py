@@ -139,6 +139,10 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",
     ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+    ],
 }
 
 
@@ -173,7 +177,6 @@ CORS_ALLOW_HEADERS = [
 # Optional: Preflight request cache time (in seconds)
 CORS_PREFLIGHT_MAX_AGE = 86400  # 24 hours
 ################################################################
-
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"] # new
      
