@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",   # new
     
     # Local
     "accounts.apps.AccountsConfig", # new
@@ -46,7 +47,12 @@ INSTALLED_APPS = [
     "rest_framework", # new
     "corsheaders", # new
     "rest_framework.authtoken", # new   - add authtoken app which generates the tokens on the server - It comes included with Django REST Framework but must be added to our INSTALLED_APPS setting
-    
+    "allauth",
+    "allauth.account", 
+    "allauth.socialaccount", 
+    "dj_rest_auth", 
+    "dj_rest_auth.registration", 
+    "drf_spectacular", # new
 ]
 
 MIDDLEWARE = [
@@ -55,6 +61,7 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",        # new
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -72,10 +79,14 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.request", # new
             ],
         },
     },
 ]
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" # new
+SITE_ID = 1 # new
 
 WSGI_APPLICATION = "django_project.wsgi.application"
 
@@ -144,6 +155,8 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
     ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema", # new
+    
 }
 
 
@@ -180,4 +193,10 @@ CORS_PREFLIGHT_MAX_AGE = 86400  # 24 hours
 ################################################################
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"] # new
-     
+
+
+SPECTACULAR_SETTINGS = { "TITLE": "Blog API Project", 
+                        "DESCRIPTION": "A sample blog to learn about DRF",
+                        "VERSION": "1.0.0", 
+                        # OTHER SETTINGS 
+                        }
